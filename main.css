@@ -1,0 +1,126 @@
+/* 52張卡的排版 */
+#cards {
+  /* 軸：row (橫的) */
+  display: flex;
+  flex-wrap: wrap;
+  /* 自動換行 */
+  width: 85%;
+  /* 新增：寬度和標頭一致 */
+  margin: 0 auto;
+}
+
+/* 一張卡片的排版 */
+.card {
+  /* 卡片在容器裡的排版 */
+  box-sizing: border-box;
+  /* flex：flex-basis(佔的比例), flex-grow, flex-shrink */
+  /* flex-basis：假設整個頁面100%，想要一排有13張：100/13=7 */
+  /* flex-grow：如果容器還有剩餘的空間，會不會把剩餘的空間吃掉 --> 0:有空間也不會填滿 ； 1：表示數字是1的全部去平均剩餘空間； 2：比１大一倍*/
+  /* flex-shrink：空間不夠用時需要收縮己的大小嗎？ --> 1：表示不會收縮自己的大小*/
+  /* vw:視窗大小--> 100vw:完整的視窗大小 */
+  flex: 7% 1 1;
+  /* 修改：卡片需要分配剩餘空間 */
+  height: 8vw;
+  border: 2px solid #e0e0e0;
+  margin: 2px;
+  /*卡片邊距*/
+
+
+  /* 卡片內部元素的排版 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card img {
+  max-width: 30%;
+  align-self: center;
+}
+
+.card p {
+  margin: 3px;
+  font-size: 10px;
+}
+
+.card p:last-child {
+  transform: rotate(180deg);
+}
+
+.back {
+  background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover;
+}
+
+.paired {
+  background-color: #dae0e3;
+}
+
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  /* align-items主要軸是column，因為#header裡面有指定"flex-direction: column;" */
+  width: 85%;
+}
+
+#header .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  /* justify-content因#header .title沒有指定，所以主要軸:row，次要:column */
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
+
+/* 配對錯誤的動畫 */
+.wrong{
+  animation: wrongAnimation 0.2s;/*動畫播0.2秒*/
+  animation-iteration-count: 5;/*動畫播5次*/
+}
+@keyframes wrongAnimation{
+  to {
+    border:2px solid #f1c232
+  }
+
+}
+
+/* 遊戲結束出現的畫面 */
+.completed{
+  position: absolute;
+    z-index: 999;
+    top: 33vh;
+    background-color: RGBA(232, 246, 254, 0.8);
+    width: 100vw;
+    padding: 50px 0;
+  }
+  
+  .completed>p {
+    font-size: 1.5em;
+    color: black;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .completed>p:first-child {
+    font-size: 3em;
+    font-weight: 700;
+    color: #758d9a;
+  }
+
